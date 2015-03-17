@@ -1,4 +1,3 @@
-<h1>Listing All Questions</h1>
 <h1>New Question</h1>
 
 <%= form_for :question do |question| %>
@@ -18,16 +17,3 @@
 </p>
 
 <% end %>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-  </tr>
-  <% @questions.each do |question| %>
-  <tr>
-    <td><%= question.title%></td>
-    <td><%= question.content%></td>
-  </tr>
-<% end %>
-</table>
