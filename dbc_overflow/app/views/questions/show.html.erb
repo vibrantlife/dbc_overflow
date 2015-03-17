@@ -1,6 +1,12 @@
-<h1>Listing One Question and Associated Answers</h1>
-<h3><%=  @questions.title %></h3>
-<h4><%=@questions.content%></h4>
+<h1>
+	<strong>Title:</strong>
+	<%= @question.title%>
+</h1>
+
+<h1>
+	<strong>Content:</strong>
+	<%= @question.content%>
+</h1>
 
 <table style="width:90%">
 	<tr>
@@ -14,3 +20,5 @@
 	</tr>
 	<% end %>
 </table>
+
+<%= render "answers/new"%>
