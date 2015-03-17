@@ -5,4 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-question = Question.create(title: Faker::Hacker.adjective, content: Faker::Hacker.say_something_smart)
+question1 = Question.create(title: Faker::Hacker.adjective, content: Faker::Hacker.say_something_smart)
+
+answer1 = Answer.create(title: Faker::Hacker.adjective, content: Faker::Hacker.say_something_smart, question_id: 1)
