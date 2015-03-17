@@ -1,1 +1,16 @@
-show.html.erb
+<h1>Listing One Question and Associated Answers</h1>
+<h3><%= @questions.title %></h3>
+<h4><%= @questions.content%></h4>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Text</th>
+	</tr>
+		<% @answers.each do |answer| %>
+	<tr>
+		<td><%= answer.title%></td>
+		<td><%= answer.content%></td>
+	</tr>
+	<% end %>
+</table>git 
