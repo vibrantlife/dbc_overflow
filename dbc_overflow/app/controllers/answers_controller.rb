@@ -11,9 +11,6 @@ class AnswersController < ApplicationController
 		else
 			redirect_to new_question_answer_path(@question)
 		end
-		#@answer = @question.answers.create(answer_params)
-		#redirect_to question_path(@question)
-
 	end
 
 	private

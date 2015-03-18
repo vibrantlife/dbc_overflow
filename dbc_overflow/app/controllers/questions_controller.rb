@@ -40,6 +40,18 @@ class QuestionsController < ApplicationController
   	redirect_to questions_path
   end
 
+  def upvote
+  	@question = Question.find(params[:id])
+  	@question.increment!(:vote_count)
+  	redirect_to questions_path
+  end
+
+  def downvote
+  	@question = Question.find(params[:id])
+  	@question.decrement!(:vote_count)
+  	redirect_to questions_path
+  end
+
   private 
   def question_params
   	params.require(:question).permit(:title, :content)

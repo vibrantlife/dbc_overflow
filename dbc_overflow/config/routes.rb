@@ -4,7 +4,16 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   resources :questions do
-    resources :answers
+    member do 
+      put :upvote
+      put :downvote
+      resources :answers do
+        member do 
+          put :upvote
+          put :downvote
+        end
+      end
+    end
   end
 
   root 'questions#index'
