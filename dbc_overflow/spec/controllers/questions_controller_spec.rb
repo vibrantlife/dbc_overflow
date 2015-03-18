@@ -30,6 +30,16 @@ describe QuestionsController do
       expect(question.reload.title).to eq(question.title)
     end
   end
+  describe 'PUT question#update' do
+    before :each do
+      put :update, id: question.id, question: {title: 'rspec is a bia', content: 'why hasn\'t someone invented auto testing???'}
+    end
+    it 'should update the question' do
+      question.reload
+      expect(question.title).to include(question.title)
+      expect(question.content).to include(question.content)
+    end
+  end
 
   #controller end
 end
