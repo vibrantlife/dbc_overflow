@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all.sort
+    @quote = HTTParty.get("https://api.github.com/zen?access_token=#{ENV['TOKEN']}", :headers => {"User-Agent" => "vibrantlife"})
   end
 
   def show
@@ -25,11 +26,11 @@ class QuestionsController < ApplicationController
   	end
   end
 
-  def update 
+  def update
   	@question = Question.find(params[:id])
   	if @question.update(question_params)
   		redirect_to @question
-  	else 
+  	else
   		render 'edit'
   	end
   end
@@ -52,7 +53,11 @@ class QuestionsController < ApplicationController
   	redirect_to questions_path
   end
 
-  private 
+  def method_name
+
+  end
+
+  private
   def question_params
   	params.require(:question).permit(:title, :content)
 
