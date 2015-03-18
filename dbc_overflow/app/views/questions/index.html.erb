@@ -23,11 +23,15 @@
   <tr>
     <th>Title</th>
     <th>Text</th>
+    <th>View</th>
+    <th>Edit</th>
   </tr>
   <% @questions.each do |question| %>
   <tr>
     <td><%= question.title%></td>
     <td><%= question.content%></td>
+    <td><%= link_to 'Show', question_path(question)%></td>
+    <td><%= link_to 'Edit', edit_question_path(question)%></td>
   </tr>
 <% end %>
 </table>
