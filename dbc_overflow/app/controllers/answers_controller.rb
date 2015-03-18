@@ -5,11 +5,11 @@ class AnswersController < ApplicationController
 
 	def create
 		@question = Question.find(params[:question_id])
-		@answer = Answer.new(answer_params.merge(question_id: params[:question_id]))
+		@answer = @question.answers.new(answer_params)
 		if @answer.save
-			redirect_to question_path(@question)
+			redirect_to answers_path(@question)
 		else
-			redirect_to new_question_answer_path(@question)
+			render 'new'
 		end
 	end
 

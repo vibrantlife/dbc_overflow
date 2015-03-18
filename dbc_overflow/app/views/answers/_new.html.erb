@@ -1,7 +1,7 @@
 <h1>Add a New Answer</h1>
 
 
-<%= form_for ([@question, @question.answers.build]) do |form| %>
+<%= form_for @question, url: new_answer_path do |form| %>
 <p>
 	<%= form.label :title %><br>
 	<%= form.text_field :title %>
