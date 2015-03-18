@@ -11,11 +11,18 @@
 
 <table style="width:100%">
 	<tr>
+		<th>Upvote</th>
+		<th>Downvote</th>
+		<th>Total Votes</th>
 		<th>Title</th>
 		<th>Text</th>
+		
 	</tr>
 		<% @answers.each do |answer| %>
 	<tr>
+		<td><%= button_to 'Upvote', upvote_answer_path(answer), method: :put%></td>
+		<td><%= button_to 'Downvote', downvote_answer_path(answer), method: :put%></td>
+		<td><%=answer.vote_count%></td>
 		<td><%= answer.title%></td>
 		<td><%= answer.content%></td>
 	</tr>
