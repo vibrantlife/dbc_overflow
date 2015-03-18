@@ -16,22 +16,19 @@ class AnswersController < ApplicationController
 	# def update
 	# 	@question = Question.find(params[:id])
 	# 	@answer = @question.answers.update_attributes(answers_params)
-		
+
 	# end
 
 	def upvote
-		@question = Question.find(params[:id])
-		@answer = @question.answers.find(params[:id])
+		@answer = Answer.find(params[:id])
 		@answer.increment!(:vote_count)
-		redirect_to question_path(@question)
-		
+		redirect_to @answer.question
 	end
 
 	def downvote
-		@question = Question.find(params[:id])
-		@answer = @question.answers.find(params[:id])
+		@answer = Answer.find(params[:id])
 		@answer.decrement!(:vote_count)
-		redirect_to question_path(@question)
+		redirect_to @answer.question
 		
 	end
 
