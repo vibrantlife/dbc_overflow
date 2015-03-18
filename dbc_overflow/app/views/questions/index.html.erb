@@ -21,6 +21,8 @@
 
 <table>
   <tr>
+    <th>Upvote</th>
+    <th>Downvote</th>
     <th>Title</th>
     <th>Text</th>
     <th>View</th>
@@ -29,6 +31,8 @@
   </tr>
   <% @questions.each do |question| %>
   <tr>
+    <td><button>Upvote</button></td>
+    <td><button>Downvote</button></td>
     <td><%= question.title%></td>
     <td><%= question.content%></td>
     <td><%= link_to 'Show', question_path(question)%></td>
