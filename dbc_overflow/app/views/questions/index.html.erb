@@ -25,6 +25,7 @@
     <th>Text</th>
     <th>View</th>
     <th>Edit</th>
+    <th>Delete</th>
   </tr>
   <% @questions.each do |question| %>
   <tr>
@@ -32,6 +33,7 @@
     <td><%= question.content%></td>
     <td><%= link_to 'Show', question_path(question)%></td>
     <td><%= link_to 'Edit', edit_question_path(question)%></td>
+    <td><%= link_to 'Destroy', question_path(question), method: :delete%></td>
   </tr>
 <% end %>
 </table>

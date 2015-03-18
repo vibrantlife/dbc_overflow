@@ -4,8 +4,47 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @questions = Question.find(params[:id])
-    @answers = @questions.answers
+    @question = Question.find(params[:id])
+    @answers = @question.answers
   end
+
+  def new
+  	@new_question = Question.new
+  end
+
+  def edit
+  	@question = Question.find(params[:id])
+  end
+
+  def create
+  	@question = Question.new(question_params)
+  	if @question.save
+  		redirect_to @question
+  	else
+  		render 'new'
+  	end
+  end
+
+  def update 
+  	@question = Question.find(params[:id])
+  	if @question.update(question_params)
+  		redirect_to @question
+  	else 
+  		render 'edit'
+  	end
+  end
+
+  def destroy
+  	@question = Question.find(params[:id])
+  	@question.destroy
+  	redirect_to questions_path
+  end
+
+  private 
+  def question_params
+  	params.require(:question).permit(:title, :content)
+
+  end
+
 end
 
