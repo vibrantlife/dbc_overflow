@@ -40,6 +40,15 @@ describe QuestionsController do
       expect(question.content).to include(question.content)
     end
   end
+  # describe 'DELETE question#destroy' do
+  #   before :each do
+  #     delete :destroy, id: question.id, question: question
+  #   end
+  #   it 'deletes the question' do
+  #     expect(Question.all.count).to change
+  #   end
+
+  # end
 
   #controller end
 end
