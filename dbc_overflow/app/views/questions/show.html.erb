@@ -7,6 +7,7 @@
 	<strong>Content:</strong>
 	<%= @question.content%>
 </h1>
+<%= render "answers/new"%>
 
 <table style="width:100%">
 	<tr>
@@ -21,7 +22,6 @@
 	<% end %>
 </table>
 
-<%= render "answers/new"%>
 
 <%= link_to 'Delete Question', question_path(@question), method: :delete, data: { confirm: 'Are you sure?'}  %>
 <%= link_to 'Back', questions_path %> | 

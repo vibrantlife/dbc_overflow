@@ -1,7 +1,7 @@
-<h1>Add a New Answer</h1>
+<h3>Add a New Answer</h3>
 
 
-<%= form_for @question, url: new_answer_path do |form| %>
+<%= form_for :answer, url: answers_path do |form| %>
 <p>
 	<%= form.label :title %><br>
 	<%= form.text_field :title %>
@@ -14,7 +14,7 @@
 
 <p>
 
-	<%= form.submit%>
+	<%= form.submit 'Add Question'%>
 </p>
 
 <% end %>
