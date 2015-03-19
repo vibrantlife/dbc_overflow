@@ -33,7 +33,7 @@ var addQuestion = function(event){
     console.log("success", response);
     var html = $('#table_generator').html();
     var templatingFuction = Handlebars.compile(html);
-    $('.question_table').append(templatingFuction(response));
+    $('.question_table').append(templatingFuction({response: response}));
 
   })
   .fail(function() {
