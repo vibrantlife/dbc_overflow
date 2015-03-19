@@ -17,8 +17,6 @@
 
 $(document).ready(function() {
   $('form').on('submit', addQuestion);
-  displayAllQuestions();
-
 });
 
 var addQuestion = function(event){
