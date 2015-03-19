@@ -20,19 +20,24 @@ class QuestionsController < ApplicationController
   def create
   	@question = Question.new(question_params)
   	if @question.save
-  		redirect_to root_path
+  		# redirect_to root_path
+      render :json => @question
   	else
   		render 'new'
   	end
+    # respond_to do |format|
+    #   format.html
+    #   format.json {render :json => @question}
+    # end
   end
 
   def update
-  	@question = Question.find(params[:id])
-  	if @question.update(question_params)
-  		redirect_to @question
-  	else
-  		render 'edit'
-  	end
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      redirect_to @question
+    else
+      render 'edit'
+    end
   end
 
   def destroy

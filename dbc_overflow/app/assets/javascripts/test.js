@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>DbcOverflow</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <!-- handlebars -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js">
-  </script>
-  <!-- jquery  -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- font -->
-   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 
-
-<!-- question builder  -->
 <script id="table_generator" type="text/x-handlebars-template">
 <td><form class="button_to" method="post" action="/questions/" + {{response.id}} + "/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote!"></form></td>
 <td><form class="button_to" method="post" action="/questions/" + {{response.id}} + "/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote!"></form></td>
@@ -25,10 +9,16 @@
 <td><a href="/questions/" + {{response.id}} + "/edit">Edit</a></td>
 <td><a rel="nofollow" data-method="delete" href="/questions/" + {{response.id}}>Destroy</a></td>
 </script>
-</head>
-<body>
 
-<%= yield %>
 
-</body>
-</html>
+<% @questions.each do |question| %>
+  <tr class="table_row">
+    <td data-question-id="<%= question.id%>"><%= button_to 'Upvote!', upvote_question_path(question), method: :put%></td>
+    <td><%= button_to 'Downvote!', downvote_question_path(question), method: :put %></td>
+    <td><%= question.vote_count%></td>
+    <td class="add_question"><%= question.title%></td>
+    <td><%= question.content%></td>
+    <td><%= link_to 'Show', question_path(question)%></td>
+    <td><%= link_to 'Edit', edit_question_path(question)%></td>
+    <td><%= link_to 'Destroy', question_path(question), method: :delete%></td>
+  </tr>
