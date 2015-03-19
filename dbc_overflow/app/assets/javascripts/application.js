@@ -17,6 +17,7 @@
 
 $(document).ready(function() {
   $('form').on('submit', addQuestion);
+  displayAllQuestions();
 
 });
 
@@ -34,6 +35,8 @@ var addQuestion = function(event){
     var html = $('#table_generator').html();
     var templatingFuction = Handlebars.compile(html);
     $('.question_table').append(templatingFuction({response: response}));
+    $('form')[0].reset();
+
   })
   .fail(function() {
     console.log("error");
@@ -54,6 +57,29 @@ var addAnswer = function(event){
   })
   .done(function() {
     console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+}
+
+var displayAllQuestions = function(event) {
+  $.ajax({
+    url: '/questions',
+    type: 'GET',
+    dataType: 'JSON',
+  })
+  .done(function(questions) {
+    console.log("success", questions);
+    for(var i =0; i < questions.length; i++){
+      var questionsObject = questions[i]
+      var html = $('#table_generator').html();
+      var templatingFuction = Handlebars.compile(html);
+      $('.question_table').append(templatingFuction({response: questionsObject}));
+    }
   })
   .fail(function() {
     console.log("error");

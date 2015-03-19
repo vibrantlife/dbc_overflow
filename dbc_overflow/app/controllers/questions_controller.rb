@@ -1,7 +1,11 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all.sort
     @quote = HTTParty.get("https://api.github.com/zen?access_token=#{ENV['TOKEN']}", :headers => {"User-Agent" => "vibrantlife"})
+    @questions = Question.all.sort
+    respond_to do |format|
+      format.html
+      format.json {render :json => @questions}
+    end
   end
 
   def show
