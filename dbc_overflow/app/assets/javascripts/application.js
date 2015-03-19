@@ -16,12 +16,13 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('form').on('submit', addQuestion);
+  $('form').on('submit', addAnswer)
+    /* Act on the event */
 });
 
 var addQuestion = function(event){
-  event.preventDefault();
-  console.log(this);
+  event.preventDefault()
+  // console.log(this);
   $.ajax({
     type: "POST",
     url: '/questions',
@@ -46,15 +47,15 @@ var addQuestion = function(event){
 
 var addAnswer = function(event){
   event.preventDefault();
-  console.log(this);
+  var url = this.action
   $.ajax({
-    url: '/path/to/file',
-    type: 'default GET (Other values: POST)',
-    dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-    data: {param1: 'value1'},
+    url: url,
+    type: 'POST',
+    dataType: 'json',
+    data: $(this).serialize()
   })
-  .done(function() {
-    console.log("success");
+  .done(function(answer) {
+    console.log("success", answer);
   })
   .fail(function() {
     console.log("error");

@@ -22,6 +22,17 @@
   color: red;
 }
 
-table, th, td {
+/*table, th, td {
     border: 1px solid black;
+}*/
+
+table {
+  border-collapse:collapse;
+  table-layout:fixed;
+  bord: 1px solid gray;
+}
+
+table td {
+  word-wrap:break-word;
+  width: 600px;
 }

@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
 		@question = Question.find(params[:id])
 		@answer = @question.answers.new(answer_params)
 		if @answer.save
-			redirect_to question_path(@question)
+			render :json => @answer
 		else
 			render 'new'
 		end
@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		@answer.decrement!(:vote_count)
 		redirect_to @answer.question
-		
+
 	end
 
 	private

@@ -40,17 +40,20 @@
 
 <script id="table_generator" type="text/x-handlebars-template">
 <tr>
-<td><form class="button_to" method="post" action="/questions/" + {{response.id}} + "/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote!"></form></td>
+<td><form class="button_to" method="post" action="/questions/{{response.id}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote!"></form></td>
 <td><form class="button_to" method="post" action="/questions/" + {{response.id}} + "/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote!"></form></td>
 <td>{{response.vote_count}}</td>
 <td>{{response.title}}</td>
 <td>{{response.content}}</td>
 <td><a href="/questions/{{response.id}}">Show</a></td>
 <td><a href="/questions/{{response.id}}/edit">Edit</a></td>
-<td><a rel="nofollow" data-method="delete" href="/questions/" + {{response.id}}>Destroy</a></td>
+<td><a rel="nofollow" data-method="delete" href="/questions/{{response.id}}">Destroy</a></td>
 </tr>
 </script>
 </table>
 </div>
-<script type="text/javascript">  displayAllQuestions();
+<script type="text/javascript">
+  $('form').on('submit', addQuestion);
+  displayAllQuestions();
 </script>
+
