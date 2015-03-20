@@ -9,6 +9,9 @@
 </h1>
 <%= render "answers/new"%>
 
-<%= link_to 'Delete Question', question_path(@question), method: :delete, data: { confirm: 'Are you sure?'}  %>
+<%= link_to 'Delete Question',question_path(@question), method: :delete, data: { confirm: 'Are you sure?'}, id: "delete" %>
 <%= link_to 'Back', questions_path %> |
 <%= link_to 'Edit', edit_question_path(@question) %>
+<script type="text/javascript">
+
+</script>

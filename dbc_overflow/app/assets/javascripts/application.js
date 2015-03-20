@@ -17,6 +17,7 @@
 
 $(document).ready(function() {
   $('form').on('submit', addAnswer)
+  displayAllAnswers();
     /* Act on the event */
 });
 
@@ -45,6 +46,25 @@ var addQuestion = function(event){
   });
 }
 
+var displayAllQuestions = function(event) {
+  $.ajax({
+    url: '/questions',
+    dataType: 'JSON',
+  })
+  .done(function(questions) {
+    console.log("success", questions);
+    for(var i =0; i < questions.length; i++){
+      var questionsObject = questions[i]
+      var html = $('#table_generator').html();
+      var templatingFuction = Handlebars.compile(html);
+      $('.question_table').append(templatingFuction({response: questionsObject}));
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+}
+
 var addAnswer = function(event){
   event.preventDefault();
   var url = this.action
@@ -69,19 +89,20 @@ var addAnswer = function(event){
   });
 }
 
-var displayAllQuestions = function(event) {
+var displayAllAnswers = function(event){
+  var url = $("#delete").attr('href');
   $.ajax({
-    url: '/questions',
-    type: 'GET',
-    dataType: 'JSON',
+    url: url,
+    dataType: 'json',
+    data: $(this).serialize()
   })
-  .done(function(questions) {
-    console.log("success", questions);
-    for(var i =0; i < questions.length; i++){
-      var questionsObject = questions[i]
-      var html = $('#table_generator').html();
+  .done(function(allAnswers) {
+    console.log("success", allAnswers);
+    for (var i = 0; i < allAnswers.length; i++){
+      var answersObjects = allAnswers[i]
+      var html = $('#answer_generator').html();
       var templatingFuction = Handlebars.compile(html);
-      $('.question_table').append(templatingFuction({response: questionsObject}));
+      $('table').append(templatingFuction({answer: answersObjects}));
     }
   })
   .fail(function() {

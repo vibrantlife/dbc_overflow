@@ -11,6 +11,10 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answers = @question.answers.sort
+    respond_to do |format|
+      format.html
+      format.json {render :json => @answers}
+    end
   end
 
   def new
@@ -57,15 +61,10 @@ class QuestionsController < ApplicationController
   	redirect_to questions_path
   end
 
-  def method_name
-
-  end
-
   private
   def question_params
   	params.require(:question).permit(:title, :content)
 
   end
-
 end
 
