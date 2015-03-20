@@ -18,7 +18,8 @@
 $(document).ready(function() {
   $('form').on('submit', addAnswer)
   displayAllAnswers()
-  $('.button_to_upvote').on('click', '.upvote_Button', upVote)
+  $('table').on('click', '.upvote_button',upVote)
+
     /* Act on the event */
 });
 
@@ -118,16 +119,15 @@ var displayAllAnswers = function(event){
 
 var upVote = function(event){
   console.log("in upvote");
-  event.preventDefault();
-  var url = this.action
+  var url = $(this).attr('data-url');
   $.ajax({
     url: url,
     type: 'PUT',
-    dataType: 'json',
-    data: $(this).serialze(),
+    dataType: 'json'
   })
-  .done(function(response) {
-    console.log("success", response);
+  .done(function(answerUpvote) {
+    console.log("success", answerUpvote.id);
+    $("span[data-id=" + "" + answerUpvote.id + "]").text(answerUpvote.vote_count);
   })
   .fail(function() {
     console.log("error");
