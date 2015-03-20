@@ -18,7 +18,7 @@
 $(document).ready(function() {
   $('form').on('submit', addAnswer)
   displayAllAnswers()
-  $('.button_to').on('click', upVote)
+  $('.button_to_upvote').on('click', '.upvote_Button', upVote)
     /* Act on the event */
 });
 

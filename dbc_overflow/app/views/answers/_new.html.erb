@@ -32,7 +32,7 @@
 
   <script id = "answer_generator" type="text/x-handlebars-template">
     <tr>
-      <td><form class="button_to" method="post" action="/questions/{{answer.question_id}}/answers/{{answer.id}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/></form></td>
+      <td><form class="button_to_upvote" method="post" action="/questions/{{answer.question_id}}/answers/{{answer.id}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote" class="upvote_Button"><input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/></form></td>
       <td><form class="button_to" method="post" action="/questions/{{answer.question_id}}/answers/{{answer.id}}/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote"></form></td>
       <td>{{answer.vote_count}}</td>
       <td>{{answer.title}}</td>
@@ -42,6 +42,6 @@
 </div>
 
 <script type="text/javascript">
-$('.button_to').on('click', upVote)
+// $('.button_to').on('click', '.upvote_Button', console.log("me"))
 
 </script>
