@@ -17,7 +17,8 @@
 
 $(document).ready(function() {
   $('form').on('submit', addAnswer)
-  displayAllAnswers();
+  displayAllAnswers()
+  $('.button_to').on('click', upVote)
     /* Act on the event */
 });
 
@@ -69,7 +70,7 @@ var addAnswer = function(event){
   event.preventDefault();
   var url = this.action
   $.ajax({
-    url: url,
+    url: url + "?&authenticity_token=" + AUTH_TOKEN,
     type: 'POST',
     dataType: 'json',
     data: $(this).serialize()
@@ -77,7 +78,8 @@ var addAnswer = function(event){
   .done(function(answer) {
     console.log("success", answer);
     var html = $('#answer_generator').html();
-    var templatingFuction = Handlebars.compile(html);
+    var authToken = $("meta[name='crsf-token']").attr('content');
+    var templatingFuction = Handlebars.compile(html, authToken);
     $('table').append(templatingFuction({answer: answer}));
     $('form')[0].reset();
   })
@@ -104,6 +106,28 @@ var displayAllAnswers = function(event){
       var templatingFuction = Handlebars.compile(html);
       $('table').append(templatingFuction({answer: answersObjects}));
     }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+}
+
+var upVote = function(event){
+  console.log("in upvote");
+  event.preventDefault();
+  var url = this.action
+  $.ajax({
+    url: url,
+    type: 'PUT',
+    dataType: 'json',
+    data: $(this).serialze(),
+  })
+  .done(function(response) {
+    console.log("success", response);
   })
   .fail(function() {
     console.log("error");

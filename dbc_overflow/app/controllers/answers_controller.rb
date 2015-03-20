@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
 	def upvote
 		@answer = Answer.find(params[:id])
 		@answer.increment!(:vote_count)
-		redirect_to @answer.question
+		render :json => @answer
 	end
 
 	def downvote
