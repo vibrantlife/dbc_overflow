@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
 	def downvote
 		@answer = Answer.find(params[:id])
 		@answer.decrement!(:vote_count)
-		redirect_to @answer.question
+		render :json => @answer
 
 	end
 

@@ -19,6 +19,7 @@ $(document).ready(function() {
   $('form').on('submit', addAnswer)
   displayAllAnswers()
   $('table').on('click', '.upvote_button',upVote)
+  $('table').on('click', '.downvote_button', downVote)
 
     /* Act on the event */
 });
@@ -117,8 +118,8 @@ var displayAllAnswers = function(event){
 
 }
 
-var upVote = function(event){
-  console.log("in upvote");
+var upVote = function(){
+  // console.log(this);
   var url = $(this).attr('data-url');
   $.ajax({
     url: url,
@@ -135,5 +136,27 @@ var upVote = function(event){
   .always(function() {
     console.log("complete");
   });
+
+}
+
+var downVote = function(){
+  var url = $(this).attr('data-url');
+  console.log(url);
+  $.ajax({
+    url: url,
+    type: 'PUT',
+    dataType: 'JSON',
+  })
+  .done(function(answerDownvote) {
+    console.log("success", answerDownvote);
+    $("span[data-id=" + "" + answerDownvote.id + "]").text(answerDownvote.vote_count);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
 
 }

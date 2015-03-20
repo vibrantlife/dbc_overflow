@@ -33,7 +33,7 @@
   <script id = "answer_generator" type="text/x-handlebars-template">
     <tr>
       <td><button class="upvote_button" data-url="/questions/{{answer.question_id}}/answers/{{answer.id}}/upvote">Upvote</button></td>
-      <td><form class="button_to" method="post" action="/questions/{{answer.question_id}}/answers/{{answer.id}}/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote"></form></td>
+      <td><button class="downvote_button" data-url="/questions/{{answer.question_id}}/answers/{{answer.id}}/downvote">Downvote</button></td>
       <td> <span class="total_answer_votes" data-id="{{answer.id}}">{{answer.vote_count}}</span></td>
       <td>{{answer.title}}</td>
       <td>{{answer.content}}</td>
