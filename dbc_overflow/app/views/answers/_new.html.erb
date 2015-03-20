@@ -34,14 +34,14 @@
 
   <script id = "answer_generator" type="text/x-handlebars-template">
     <tr>
-      <td><form class="button_to" method="post" action="/questions/{{QUESTION.id}}/answers/{{ANSWER.ID}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote"></form></td>
+      <td><form class="button_to" method="post" action="/questions/{{QUESTION.id}}/answers/{{answer.ID}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote"></form></td>
       <td><form class="button_to" method="post" action="/questions/13/answers/13/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote"></form></td>
-      <td><{{ANSWER.vote_count}}</td>
-      <td>{{ANSWER.title}}</td>
-      <td>{{ANSWER.content}}</td>
-      <td><a href="/questions/{{ANSWER.id}">Show</a></td>
-      <td><a href="/questions/{{ANSWER.ID}}">Edit</a></td>
-      <td><a rel="nofollow" data-method="delete" href="/questions/{{ANSWER.id}}">Destroy</a></td>
+      <td>{{answer.vote_count}}</td>
+      <td>{{answer.title}}</td>
+      <td>{{answer.content}}</td>
+      <td><a href="/questions/{{answer.id}}">Show</a></td>
+      <td><a href="/questions/{{answer.ID}}">Edit</a></td>
+      <td><a rel="nofollow" data-method="delete" href="/questions/{{answer.id}}">Destroy</a></td>
       </tr>
   </script>
 </table>

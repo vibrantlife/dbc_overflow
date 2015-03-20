@@ -56,6 +56,10 @@ var addAnswer = function(event){
   })
   .done(function(answer) {
     console.log("success", answer);
+    var html = $('#answer_generator').html();
+    var templatingFuction = Handlebars.compile(html);
+    $('table').append(templatingFuction({answer: answer}));
+    $('form')[0].reset();
   })
   .fail(function() {
     console.log("error");
