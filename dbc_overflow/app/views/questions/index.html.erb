@@ -40,9 +40,9 @@
 
 <script id="table_generator" type="text/x-handlebars-template">
 <tr>
-<td><form class="button_to" method="post" action="/questions/{{response.id}}/upvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Upvote!"></form></td>
-<td><form class="button_to" method="post" action="/questions/" + {{response.id}} + "/downvote"><input type="hidden" name="_method" value="put"><input type="submit" value="Downvote!"></form></td>
-<td>{{response.vote_count}}</td>
+<td><button class="upvote_button" data-url="/questions/{{response.id}}/upvote">Upvote</button></td>
+<td><button class="downvote_button" data-url="/questions/{{response.id}}/downvote">Downvote</button></td>
+<td><span class="total_question_votes" data-id="{{response.id}}">{{response.vote_count}}</span></td>
 <td>{{response.title}}</td>
 <td>{{response.content}}</td>
 <td><a href="/questions/{{response.id}}">Show</a></td>

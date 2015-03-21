@@ -17,11 +17,10 @@
 
 $(document).ready(function() {
   $('form').on('submit', addAnswer)
-  displayAllAnswers()
   $('table').on('click', '.upvote_button',upVote)
   $('table').on('click', '.downvote_button', downVote)
 
-    /* Act on the event */
+  /* Act on the event */
 });
 
 var addQuestion = function(event){
@@ -34,7 +33,7 @@ var addQuestion = function(event){
     data: $(this).serialize()
   })
   .done(function(response) {
-    console.log("success", response);
+    console.log("success");
     var html = $('#table_generator').html();
     var templatingFuction = Handlebars.compile(html);
     $('.question_table').append(templatingFuction({response: response}));
@@ -44,24 +43,24 @@ var addQuestion = function(event){
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
 }
 
 var displayAllQuestions = function(event) {
   $.ajax({
     url: '/questions',
     dataType: 'JSON',
+    type: 'get'
   })
   .done(function(questions) {
-    console.log("success", questions);
+    console.log("success");
+    var html = $('#table_generator').html();
+    var templatingFuction = Handlebars.compile(html);
     for(var i =0; i < questions.length; i++){
       var questionsObject = questions[i]
-      var html = $('#table_generator').html();
-      var templatingFuction = Handlebars.compile(html);
+      console.log(html);
       $('.question_table').append(templatingFuction({response: questionsObject}));
     }
+    console.log('outside the loop');
   })
   .fail(function() {
     console.log("error");
@@ -88,9 +87,6 @@ var addAnswer = function(event){
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
 }
 
 var displayAllAnswers = function(event){
@@ -102,20 +98,16 @@ var displayAllAnswers = function(event){
   })
   .done(function(allAnswers) {
     console.log("success", allAnswers);
+    var html = $('#answer_generator').html();
+    var templatingFuction = Handlebars.compile(html);
     for (var i = 0; i < allAnswers.length; i++){
       var answersObjects = allAnswers[i]
-      var html = $('#answer_generator').html();
-      var templatingFuction = Handlebars.compile(html);
       $('table').append(templatingFuction({answer: answersObjects}));
     }
   })
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
-
 }
 
 var upVote = function(){
@@ -133,10 +125,6 @@ var upVote = function(){
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
-
 }
 
 var downVote = function(){
@@ -154,9 +142,4 @@ var downVote = function(){
   .fail(function() {
     console.log("error");
   })
-  .always(function() {
-    console.log("complete");
-  });
-
-
 }
