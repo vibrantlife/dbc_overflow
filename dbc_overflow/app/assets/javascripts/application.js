@@ -57,10 +57,8 @@ var displayAllQuestions = function(event) {
     var templatingFuction = Handlebars.compile(html);
     for(var i =0; i < questions.length; i++){
       var questionsObject = questions[i]
-      console.log(html);
       $('.question_table').append(templatingFuction({response: questionsObject}));
     }
-    console.log('outside the loop');
   })
   .fail(function() {
     console.log("error");
@@ -129,7 +127,6 @@ var upVote = function(){
 
 var downVote = function(){
   var url = $(this).attr('data-url');
-  console.log(url);
   $.ajax({
     url: url,
     type: 'PUT',
